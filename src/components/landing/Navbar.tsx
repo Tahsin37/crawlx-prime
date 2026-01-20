@@ -19,24 +19,24 @@ export const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          <Link to="/#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Features
           </Link>
-          <Link to="/#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            How It Works
+          </Link>
+          <Link to="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Pricing
           </Link>
           <Link to="/docs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Docs
-          </Link>
-          <Link to="/changelog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Changelog
           </Link>
         </div>
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <Button variant="ghost" size="sm" asChild>
-            <Link to="/login">Log in</Link>
+            <Link to="/signin">Log in</Link>
           </Button>
           <Button size="sm" asChild>
             <Link to="/dashboard">Start Crawling</Link>
@@ -57,14 +57,21 @@ export const Navbar = () => {
         <div className="md:hidden glass border-b border-border/50 animate-slide-down">
           <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
             <Link 
-              to="/#features" 
+              to="/features" 
               className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
               onClick={() => setIsOpen(false)}
             >
               Features
             </Link>
             <Link 
-              to="/#pricing" 
+              to="/how-it-works" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              How It Works
+            </Link>
+            <Link 
+              to="/pricing" 
               className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
               onClick={() => setIsOpen(false)}
             >
@@ -79,7 +86,7 @@ export const Navbar = () => {
             </Link>
             <div className="flex flex-col gap-2 pt-4 border-t border-border">
               <Button variant="outline" asChild>
-                <Link to="/login">Log in</Link>
+                <Link to="/signin">Log in</Link>
               </Button>
               <Button asChild>
                 <Link to="/dashboard">Start Crawling</Link>
