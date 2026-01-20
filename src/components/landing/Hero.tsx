@@ -25,7 +25,7 @@ export const Hero = () => {
             <br />
             <span className="gradient-text">AI web crawler</span>
             <br />
-            <span className="text-muted-foreground">ever built.</span>
+            <span className="text-foreground/70">ever built.</span>
           </h1>
           
           {/* Subtext */}

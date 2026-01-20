@@ -14,6 +14,16 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 
+// Dashboard Pages
+import NewCrawl from "./pages/dashboard/NewCrawl";
+import Crawls from "./pages/dashboard/Crawls";
+import Extractors from "./pages/dashboard/Extractors";
+import APIKeys from "./pages/dashboard/APIKeys";
+import Usage from "./pages/dashboard/Usage";
+import Billing from "./pages/dashboard/Billing";
+import Settings from "./pages/dashboard/Settings";
+import Webhooks from "./pages/dashboard/Webhooks";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -23,6 +33,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Public Pages */}
           <Route path="/" element={<Index />} />
           <Route path="/features" element={<Features />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
@@ -31,8 +42,19 @@ const App = () => (
           <Route path="/docs" element={<Docs />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          
+          {/* Dashboard Pages */}
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/dashboard/crawls" element={<Crawls />} />
+          <Route path="/dashboard/crawls/new" element={<NewCrawl />} />
+          <Route path="/dashboard/extractors" element={<Extractors />} />
+          <Route path="/dashboard/api-keys" element={<APIKeys />} />
+          <Route path="/dashboard/usage" element={<Usage />} />
+          <Route path="/dashboard/billing" element={<Billing />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/dashboard/webhooks" element={<Webhooks />} />
+          
+          {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

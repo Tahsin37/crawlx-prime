@@ -22,6 +22,8 @@ const navItems = [
   { icon: Settings, label: "Settings", href: "/dashboard/settings" },
 ];
 
+import { Webhook } from "lucide-react";
+
 const bottomItems = [
   { icon: BookOpen, label: "Docs", href: "/docs" },
 ];
