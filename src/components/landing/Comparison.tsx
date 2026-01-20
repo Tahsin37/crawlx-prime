@@ -1,85 +1,100 @@
 import { Check, X, Minus } from "lucide-react";
 
 const comparisonData = [
-  { feature: "AI-Powered Extraction", crawlx: true, firecrawl: "partial" },
-  { feature: "JavaScript Rendering", crawlx: true, firecrawl: true },
-  { feature: "Anti-Bot Bypass", crawlx: true, firecrawl: "partial" },
-  { feature: "LinkedIn Crawling", crawlx: true, firecrawl: false },
-  { feature: "Dynamic Content Support", crawlx: true, firecrawl: "partial" },
-  { feature: "Sub-second Latency", crawlx: true, firecrawl: false },
-  { feature: "Structured JSON Output", crawlx: true, firecrawl: true },
-  { feature: "Real-time Webhooks", crawlx: true, firecrawl: false },
-  { feature: "99.9% Uptime SLA", crawlx: true, firecrawl: false },
-  { feature: "Custom Rate Limiting", crawlx: true, firecrawl: "partial" },
+  { feature: "JS-heavy sites", crawlx: "Full", firecrawl: "Partial" },
+  { feature: "LinkedIn / Social", crawlx: "Yes", firecrawl: "No" },
+  { feature: "Raw HTML access", crawlx: "Yes", firecrawl: "Limited" },
+  { feature: "AI extraction", crawlx: "Advanced", firecrawl: "Basic" },
+  { feature: "Crawl control", crawlx: "Full", firecrawl: "Limited" },
+  { feature: "Output formats", crawlx: "8+", firecrawl: "4" },
+  { feature: "Anti-bot bypass", crawlx: "Built-in", firecrawl: "External" },
+  { feature: "Real-time webhooks", crawlx: "Yes", firecrawl: "No" },
+  { feature: "Custom rate limits", crawlx: "Yes", firecrawl: "Partial" },
+  { feature: "Uptime SLA", crawlx: "99.9%", firecrawl: "None" },
 ];
 
-const FeatureIcon = ({ value }: { value: boolean | string }) => {
-  if (value === true) {
+const StatusIcon = ({ value }: { value: string }) => {
+  if (value === "Yes" || value === "Full" || value === "Built-in" || value === "Advanced" || value.includes("+") || value.includes("%")) {
     return (
-      <div className="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center">
-        <Check className="w-3.5 h-3.5 text-success" />
+      <div className="flex items-center gap-2">
+        <div className="w-5 h-5 rounded-full bg-success/10 flex items-center justify-center">
+          <Check className="w-3 h-3 text-success" />
+        </div>
+        <span className="text-sm text-foreground font-medium">{value}</span>
       </div>
     );
   }
-  if (value === "partial") {
+  if (value === "No" || value === "None") {
     return (
-      <div className="w-6 h-6 rounded-full bg-warning/10 flex items-center justify-center">
-        <Minus className="w-3.5 h-3.5 text-warning" />
+      <div className="flex items-center gap-2">
+        <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center">
+          <X className="w-3 h-3 text-muted-foreground" />
+        </div>
+        <span className="text-sm text-muted-foreground">{value}</span>
       </div>
     );
   }
   return (
-    <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center">
-      <X className="w-3.5 h-3.5 text-muted-foreground" />
+    <div className="flex items-center gap-2">
+      <div className="w-5 h-5 rounded-full bg-warning/10 flex items-center justify-center">
+        <Minus className="w-3 h-3 text-warning" />
+      </div>
+      <span className="text-sm text-muted-foreground">{value}</span>
     </div>
   );
 };
 
 export const Comparison = () => {
   return (
-    <section className="py-20 md:py-32 bg-background-soft">
+    <section id="comparison" className="py-24 md:py-40 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-4">
+          <h2 className="text-3xl md:text-5xl font-semibold text-foreground mb-6">
             Built to outperform
           </h2>
           <p className="text-lg text-muted-foreground">
-            See how CrawlX compares to Firecrawl across key features
+            An honest comparison. No marketing fluff.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-medium">
             {/* Header */}
-            <div className="grid grid-cols-3 gap-4 px-6 py-4 bg-secondary/50 border-b border-border">
-              <div className="text-sm font-medium text-foreground">Feature</div>
-              <div className="text-sm font-medium text-center">
-                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary">CrawlX</span>
+            <div className="grid grid-cols-3 gap-4 px-8 py-5 bg-secondary/50 border-b border-border">
+              <div className="text-sm font-semibold text-foreground">Feature</div>
+              <div className="text-center">
+                <span className="inline-block px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold">
+                  CrawlX
+                </span>
               </div>
-              <div className="text-sm font-medium text-center text-muted-foreground">Firecrawl</div>
+              <div className="text-center">
+                <span className="inline-block px-4 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium">
+                  Firecrawl
+                </span>
+              </div>
             </div>
 
             {/* Rows */}
             {comparisonData.map((row, index) => (
               <div
                 key={row.feature}
-                className={`grid grid-cols-3 gap-4 px-6 py-4 items-center ${
+                className={`grid grid-cols-3 gap-4 px-8 py-5 items-center ${
                   index !== comparisonData.length - 1 ? "border-b border-border" : ""
-                }`}
+                } hover:bg-secondary/30 transition-colors`}
               >
-                <div className="text-sm text-foreground">{row.feature}</div>
+                <div className="text-sm text-foreground font-medium">{row.feature}</div>
                 <div className="flex justify-center">
-                  <FeatureIcon value={row.crawlx} />
+                  <StatusIcon value={row.crawlx} />
                 </div>
                 <div className="flex justify-center">
-                  <FeatureIcon value={row.firecrawl} />
+                  <StatusIcon value={row.firecrawl} />
                 </div>
               </div>
             ))}
           </div>
 
           {/* Legend */}
-          <div className="flex items-center justify-center gap-6 mt-6 text-xs text-muted-foreground">
+          <div className="flex items-center justify-center gap-8 mt-8 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-success/10 flex items-center justify-center">
                 <Check className="w-2.5 h-2.5 text-success" />
@@ -90,13 +105,13 @@ export const Comparison = () => {
               <div className="w-4 h-4 rounded-full bg-warning/10 flex items-center justify-center">
                 <Minus className="w-2.5 h-2.5 text-warning" />
               </div>
-              <span>Partial support</span>
+              <span>Partial</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-muted flex items-center justify-center">
                 <X className="w-2.5 h-2.5 text-muted-foreground" />
               </div>
-              <span>Not supported</span>
+              <span>Not available</span>
             </div>
           </div>
         </div>
