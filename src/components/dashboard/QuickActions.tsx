@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Plus, FileJson, Key, BookOpen } from "lucide-react";
+import { Plus, FileJson, Key, BookOpen, ArrowRight } from "lucide-react";
 
 const actions = [
   {
@@ -7,55 +7,80 @@ const actions = [
     label: "New Crawl",
     description: "Start crawling a new URL",
     href: "/dashboard/crawls/new",
+    gradient: "from-primary to-primary/80",
     primary: true,
   },
   {
     icon: FileJson,
     label: "Create Extractor",
     description: "Define custom data schemas",
-    href: "/dashboard/extractors/new",
+    href: "/dashboard/extractors",
+    iconBg: "bg-accent/15",
+    iconColor: "text-accent",
   },
   {
     icon: Key,
     label: "Generate API Key",
     description: "Create a new API key",
     href: "/dashboard/api-keys",
+    iconBg: "bg-warning/15",
+    iconColor: "text-warning",
   },
   {
     icon: BookOpen,
     label: "Read Docs",
     description: "Learn how to use CrawlX",
     href: "/docs",
+    iconBg: "bg-success/15",
+    iconColor: "text-success",
   },
 ];
 
 export const QuickActions = () => {
   return (
-    <div className="rounded-xl border border-border bg-card overflow-hidden">
-      <div className="px-5 py-4 border-b border-border">
-        <h3 className="font-medium text-foreground">Quick Actions</h3>
+    <div className="rounded-2xl border border-border bg-card overflow-hidden">
+      <div className="px-6 py-4 border-b border-border">
+        <h3 className="font-semibold text-foreground">Quick Actions</h3>
       </div>
-      <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="p-4 grid grid-cols-2 gap-3">
         {actions.map((action) => (
           <Link
             key={action.label}
             to={action.href}
-            className={`flex items-start gap-3 p-4 rounded-xl border transition-all ${
+            className={`group relative overflow-hidden p-5 rounded-xl border transition-all duration-300 ${
               action.primary
-                ? "border-primary/30 bg-primary/5 hover:bg-primary/10"
-                : "border-border hover:border-primary/20 hover:bg-secondary"
+                ? "bg-gradient-to-br from-primary to-primary/90 border-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
+                : "border-border bg-card hover:border-primary/30 hover:bg-secondary/50"
             }`}
           >
-            <div
-              className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                action.primary ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground"
-              }`}
-            >
-              <action.icon className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-sm font-medium text-foreground">{action.label}</p>
-              <p className="text-xs text-muted-foreground">{action.description}</p>
+            {/* Background glow for primary */}
+            {action.primary && (
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+            )}
+            
+            <div className="relative">
+              <div
+                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${
+                  action.primary 
+                    ? "bg-white/20" 
+                    : action.iconBg
+                }`}
+              >
+                <action.icon className={`w-6 h-6 ${action.primary ? "text-white" : action.iconColor}`} />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className={`font-semibold mb-1 ${action.primary ? "text-white" : "text-foreground"}`}>
+                    {action.label}
+                  </p>
+                  <p className={`text-xs ${action.primary ? "text-white/80" : "text-muted-foreground"}`}>
+                    {action.description}
+                  </p>
+                </div>
+                <ArrowRight className={`w-4 h-4 opacity-0 group-hover:opacity-100 transition-all transform translate-x-0 group-hover:translate-x-1 ${
+                  action.primary ? "text-white" : "text-primary"
+                }`} />
+              </div>
             </div>
           </Link>
         ))}
