@@ -10,6 +10,16 @@ import HowItWorks from "./pages/HowItWorks";
 import UseCases from "./pages/UseCases";
 import Pricing from "./pages/Pricing";
 import Docs from "./pages/Docs";
+import Compare from "./pages/Compare";
+import SDKs from "./pages/SDKs";
+import Changelog from "./pages/Changelog";
+import Blog from "./pages/Blog";
+import About from "./pages/About";
+import Careers from "./pages/Careers";
+import Contact from "./pages/Contact";
+import Security from "./pages/Security";
+import Status from "./pages/Status";
+import Legal from "./pages/Legal";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
@@ -40,6 +50,24 @@ const App = () => (
           <Route path="/use-cases" element={<UseCases />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/docs" element={<Docs />} />
+          <Route path="/docs/*" element={<Docs />} />
+          <Route path="/compare" element={<Compare />} />
+          <Route path="/sdks" element={<SDKs />} />
+          <Route path="/changelog" element={<Changelog />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/*" element={<Blog />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/careers/*" element={<Careers />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/security" element={<Security />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="/privacy" element={<Legal />} />
+          <Route path="/terms" element={<Legal />} />
+          <Route path="/gdpr" element={<Legal />} />
+          <Route path="/dpa" element={<Legal />} />
+          <Route path="/cookies" element={<Legal />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           
